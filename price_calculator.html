@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="theme-color" content="#31efc4">
+<title>Biozenace Price Calculator</title>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<script>
+		 function __textCalculatorCounter(){
+
+        var value = $('#calculateText').val();
+        var spanWords = $('#calculatedWordsTotal'),
+            spanChars = $('#calculatedCharsTotal'),
+            spanPrice = $('#calculatedPriceTotal');
+			spanDays = $('#calculateDays');
+
+        if (value.length == 0) {
+            spanWords.html(0);
+            spanChars.html(0);
+            spanDays.html(0);
+            return;
+        }
+		
+        var selectedPricing = $("input[name=calculatePrice]:checked").val();
+        var wordCount = value.trim().replace(/\s+/gi, ' ').split(' ').length;
+        var totalChars = value.length;
+        var totalPrice = (wordCount * parseFloat(Math.round(selectedPricing * 100) / 100));
+		//days in variable
+		var Fourdays = 4;
+		var Fivedays = 5;
+		var Sixdays = 6;
+		var Sevendays =7;
+		var Eightdays ='Please Contact to this mail id for editing';
+		var Eightdays ='Please Contact to:  pyadav1510@gmail.com  for editing';
+			
+			if(1 < totalChars && totalChars <1000 ){
+									spanDays.html(Fourdays);
+				
+			}
+			if(1001 < totalChars && totalChars <2000){
+									spanDays.html(Fivedays);
+			}
+			if(2001 < totalChars && totalChars <4000){
+									spanDays.html(Sixdays);
+			}
+			if(4001 < totalChars && totalChars <6000){
+									spanDays.html(Sevendays);
+			}
+			if(6001 < totalChars && totalChars <10000){
+									spanDays.html(Eightdays);
+			}
+
+        spanWords.html(wordCount);
+        spanChars.html(totalChars);
+        spanPrice.html(totalPrice.toFixed(2));
+    }
+    
+    
+    $(document).ready(function(){
+    	var textblock = $('#calculateText');
+        textblock.change(__textCalculatorCounter);
+        textblock.keydown(__textCalculatorCounter);
+        textblock.keypress(__textCalculatorCounter);
+        textblock.keyup(__textCalculatorCounter);
+        textblock.blur(__textCalculatorCounter);
+        textblock.focus(__textCalculatorCounter);
+        $('#pricesGroup label').click(__textCalculatorCounter);
+    });
+</script>
+<style>
+` 	.aligncenter{    text-align: center;}
+	
+</style>
+
+</head>
+<body  style="background: url(wallpaper.jpg);">
+	<div class="modal-body" style="margin: 1% 10% 0 10%;">
+			<h2 style="text-align:center; color:#fff;">Biozenace Price Calculator</h2><br>
+			<div class="btn-group btn-group-justified" data-toggle="buttons" id="pricesGroup">
+				<div class="form-group">
+							<label class="btn btn-default active">
+								<input type="radio" autocomplete="off" name="calculatePrice" value="0.02" checked=""> <span style="font-size:22px; color:#fff;">Basic Manuscript Editing</span>
+							</label>
+							<label class="btn btn-default">
+								<input type="radio" autocomplete="off" name="calculatePrice" value="0.04"> <span style="font-size:22px; color:#fff;">Advanced Manuscript Editing</span>
+							</label> 
+				</div>
+				
+			</div>
+			<p style="color:#fff;">Paste Your content here to calculate price :</p>
+				<form>
+					<div class="form-group">
+						<textarea class="form-control" rows="3" name="calculateText" id="calculateText" placeholder="Paste Your Text Here For Calculation of pricing"></textarea>
+
+						<div class="calculateTextCounters">
+							<span style="font-size:20px; color:#fff;">Characters :</span> <span id="calculatedCharsTotal" style="font-size:22px; color:#fff;">0</span> <br><span style="font-size:22px; color:#fff;">Words :</span> <span id="calculatedWordsTotal" style="font-size:22px; color:#fff;">0</span>
+						</div>
+					</div>
+					<!-- <div class="form-group">
+						
+
+						<div class="btn-group btn-group-justified" data-toggle="buttons" id="pricesGroup">
+							<!-- <label class="btn btn-default" >
+								<input type="radio" autocomplete="off" name="calculatePrice" value="0.08"> <span style="font-size:22px; color:#fff;">0.08 $</span>
+							</label> -->
+							<!-- <label class="btn btn-default active">
+								<input type="radio" autocomplete="off" name="calculatePrice" value="0.02" checked=""> <span style="font-size:22px; color:#fff;">0.02 $</span>
+							</label> -->
+							<!-- <label class="btn btn-default">
+								<input type="radio" autocomplete="off" name="calculatePrice" value="0.11"> <span style="font-size:22px; color:#fff;">0.11 $</span>
+							</label> -->
+							<!-- <label class="btn btn-default">
+								<input type="radio" autocomplete="off" name="calculatePrice" value="0.13"> <span style="font-size:22px; color:#fff;">0.13 $</span>
+							</label> 
+						</div>
+					</div> -->
+
+					<div class="totalpriceblock">
+						<span style="font-size:22px; color:#fff;">Total Price &nbsp;</span><span id="calculatedPriceTotal" style="font-size:22px; color:#fff;">0.00</span><span style="font-size:22px; color:#fff;"> $</span>
+					</div>
+					<div class="totalpriceblock">
+						<span id="calculateDays" style="font-size:22px; color:#fff;">0</span> <span style="font-size:22px; color:#fff;">Days</span>
+					</div>
+
+
+				</form>
+			</div>
+			<p style="bottom:0px!important; position:fixed;">&copy;2018 Biozenace</p>
+</body>
+</html>                            
